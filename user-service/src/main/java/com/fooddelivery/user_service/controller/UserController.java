@@ -14,9 +14,6 @@ public class UserController{
     private List<User> userList = new ArrayList<>();
     @GetMapping("/all")
     public List<User> getAllUser() {
-        userList.add(new User(1L, "Yash Kumar", "yash@gmail.com", "pass123"));
-        userList.add(new User(2L, "Rahul Singh", "rahul@gmail.com", "pass456"));
-        userList.add(new User(3L, "Priya Sharma", "priya@gmail.com", "pass789"));
         return userList;
     }
      @GetMapping("/{id}")
