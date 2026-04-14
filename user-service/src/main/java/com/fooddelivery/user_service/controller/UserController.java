@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 @RestController
 @RequestMapping("/api/users")
@@ -35,6 +36,17 @@ public class UserController{
          public String deleteUser(@PathVariable Long id) {
              userList.removeIf(user -> user.getId().equals(id));
              return "User deleted successfully!";
+         }
+         @PutMapping("/{id}")
+         public String updateUser(@PathVariable Long id, @RequestBody User updatedUser){
+            for (User user : userList) {
+                if (user.getId().equals(id)){
+                    user.setName(updatedUser.getName());
+                    user.setEmail(updatedUser.getEmail());
+                    return "User updated successfully";
+                }
+            }
+            return "User not found";
          }
      }
 
